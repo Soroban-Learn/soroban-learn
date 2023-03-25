@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
-import CodeMirror from "@uiw/react-codemirror";
-import { rust } from "@codemirror/lang-rust";
-import { ViewPlugin, Decoration } from "@codemirror/view";
-import { EditorView } from "codemirror";
-import { RangeSet } from "@codemirror/rangeset";
 import Logo from "../../Assets/Images/logo.svg";
+
+import IDE from "../../Components/IDE";
+import Terminal from "../../Components/Terminal";
+import FileExplorer from "../../Components/FileExplorer";
 
 const lineToDisable = 0;
 
@@ -17,15 +16,6 @@ const lineToDisable = 0;
 // ]);
 
 function Learn() {
-  const code = `[package]
-name = "hello-world"
-version = "0.1.0"
-edition = "2021"`;
-
-  const onChange = React.useCallback((value, viewUpdate) => {
-    console.log("value:", value);
-  }, []);
-
   return (
     <div className="flex flex-col h-screen">
       {/* Header */}
@@ -63,45 +53,13 @@ edition = "2021"`;
             </div>
           </div>
 
-          {/* File Explorer */}
-          <div className="bg-[#282828] h-[400px]">1</div>
+          <FileExplorer />
         </div>
 
         <div className="w-full flex flex-col gap-4">
-          {/* Code Editor */}
-          <div className="bg-[#232323] rounded-tl-lg rounded-bl-lg p-6 h-full">
-            <CodeMirror
-              value={code}
-              className="rounded-tl-lg rounded-bl-lg"
-              height="100%"
-              theme="dark"
-              extensions={[EditorView.lineWrapping, rust()]}
-              onChange={onChange}
-            />
-          </div>
+          <IDE />
 
-          {/* Console */}
-          <div className="h-[400px] flex flex-col">
-            <div>
-              <div className="bg-[#282828] w-fit px-11 py-3 rounded-tr-lg text-base font-bold">
-                Console
-              </div>
-            </div>
-            <div className="bg-[#282828] h-full p-6">
-              <div>
-                <span className="text-lg leading-relaxed text-purple-500">
-                  soroban-learn/projects
-                </span>
-                <div>
-                  <span>%</span>
-                  <input
-                    type="text"
-                    className="bg-transparent ml-2 border-transparent focus:border-transparent focus:ring-0 !outline-none"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+          <Terminal />
         </div>
       </div>
     </div>
