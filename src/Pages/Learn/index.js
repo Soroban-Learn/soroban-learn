@@ -1,21 +1,46 @@
-import React, { useEffect } from "react";
-import Logo from "../../Assets/Images/logo.svg";
+import React, { useEffect, useState } from "react";
 
+// Packages
+import ReactMarkdown from "react-markdown";
+
+// Assets
+import Logo from "../../Assets/Images/logo.svg";
+import CreateNewProjectMarkdownFile from "../../LearningMaterial/HelloWorld/Configuration/CreateNewProject.md";
+import UpdateCargoMarkdownFile from "../../LearningMaterial/HelloWorld/Configuration/UpdateCargoFile.md";
+import ImportSDK from "../../LearningMaterial/HelloWorld/Configuration/ImportSDK.md";
+import ConfigureReleaseFile from "../../LearningMaterial/HelloWorld/Configuration/ConfigureReleaseFile.md";
+import ReleaseWithLogs from "../../LearningMaterial/HelloWorld/Configuration/ReleaseWithLogs.md";
+import WrappingItUp from "../../LearningMaterial/HelloWorld/Configuration/WrappingItUp.md";
+
+// Components
 import IDE from "../../Components/IDE";
 import Terminal from "../../Components/Terminal";
 import FileExplorer from "../../Components/FileExplorer";
 
-const lineToDisable = 0;
-
-// const rangeSet = RangeSet.of([
-//   {
-//     from: 0,
-//     to: 0,
-//     mode: "disabled", // Disable the line
-//   },
-// ]);
+// Utils
+import { H2, H3, H4, P, Code } from "../../Utils/MarkDownFunctions";
 
 function Learn() {
+  const [markdown, setMarkdown] = useState("");
+  const [currentStep, setCurrentContentStep] = useState(0);
+
+  useEffect(() => {
+    const steps = [
+      CreateNewProjectMarkdownFile,
+      UpdateCargoMarkdownFile,
+      ImportSDK,
+      ConfigureReleaseFile,
+      ReleaseWithLogs,
+      WrappingItUp,
+    ];
+
+    // Fetch Markdown
+    fetch(steps[currentStep])
+      .then((res) => res.text())
+      .then((text) => {
+        setMarkdown(text);
+      });
+  }, [currentStep]);
   return (
     <div className="flex flex-col h-screen">
       {/* Header */}
@@ -35,22 +60,16 @@ function Learn() {
           <div className="px-12 h-full">
             <h3 className="text-lg leading-loose">Current Exercise</h3>
             <h2 className="text-5xl font-semibold mb-6">Hello World</h2>
-            <p className="text-base leading-snug">
-              This is exercise will help you in creating your first “Hello
-              World!” contract.
-            </p>
-            <h4 className="text-2xl font-bold leading-loose mt-4 mb-2">
-              Create New Project
-            </h4>
-            <p className="text-base leading-snug">
-              To the right and bottom of this application you should see a tab
-              for the console. To create your project type the following and
-              press “enter”
-            </p>
-            <div className="bg-[#282828] rounded-md mt-6 p-4 flex items-center justify-between">
-              <code>cargo new --lib hello-world</code>
-              <i className="fa-light fa-copy cursor-pointer" />
-            </div>
+            <ReactMarkdown
+              children={markdown}
+              components={{ p: P, h2: H2, code: Code, h3: H3, h4: H4 }}
+            />
+            <button
+              className="bg-indigo-600 py-2 px-4 rounded-md mt-5 float-right"
+              onClick={() => setCurrentContentStep(currentStep + 1)}
+            >
+              Next Step
+            </button>
           </div>
 
           <FileExplorer />
