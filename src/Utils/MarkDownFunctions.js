@@ -15,12 +15,12 @@ export function H4(props) {
 }
 
 export function P(props) {
-  return <p className="text-base leading-snug mb-2">{props.children}</p>;
+  return <p className="text-base leading-snug my-2">{props.children}</p>;
 }
 
 export function Code(props) {
   return (
-    <div className="bg-[#282828] rounded-md mt-6 p-4 flex items-center justify-between">
+    <div className="bg-[#282828] rounded-md my-6 p-4 flex items-center justify-between">
       <code className="break-normal whitespace-pre-wrap">{props.children}</code>
       <i className="fa-light fa-copy cursor-pointer" />
     </div>

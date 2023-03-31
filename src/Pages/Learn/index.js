@@ -41,6 +41,46 @@ function Learn() {
         setMarkdown(text);
       });
   }, [currentStep]);
+
+  const fileStructure = [
+    {
+      title: "[A]Main",
+      type: "folder",
+      children: [
+        {
+          title: "[B]Sub Folder",
+          type: "folder",
+          children: [
+            {
+              title: "[C]Sub Folder 2",
+              type: "folder",
+              children: [
+                {
+                  title: "[D]something",
+                },
+              ],
+            },
+            {
+              title: "[C]something222",
+            },
+          ],
+        },
+        {
+          title: "[B]something",
+          type: "file",
+        },
+        {
+          title: "[B]something",
+          type: "file",
+        },
+      ],
+    },
+    {
+      title: "[A]another folder",
+      type: "file",
+    },
+  ];
+
   return (
     <div className="flex flex-col h-screen">
       {/* Header */}
@@ -72,7 +112,7 @@ function Learn() {
             </button>
           </div>
 
-          <FileExplorer />
+          <FileExplorer fileStructure={fileStructure} />
         </div>
 
         <div className="w-full flex flex-col gap-4">
