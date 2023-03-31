@@ -44,39 +44,39 @@ function Learn() {
 
   const fileStructure = [
     {
-      title: "[A]Main",
+      title: "Main",
       type: "folder",
       children: [
         {
-          title: "[B]Sub Folder",
+          title: "Sub Folder",
           type: "folder",
           children: [
             {
-              title: "[C]Sub Folder 2",
+              title: "Sub Folder 2",
               type: "folder",
               children: [
                 {
-                  title: "[D]something",
+                  title: "something",
                 },
               ],
             },
             {
-              title: "[C]something222",
+              title: "something222",
             },
           ],
         },
         {
-          title: "[B]something",
+          title: "something",
           type: "file",
         },
         {
-          title: "[B]something",
+          title: "something",
           type: "file",
         },
       ],
     },
     {
-      title: "[A]another folder",
+      title: "another folder",
       type: "file",
     },
   ];
