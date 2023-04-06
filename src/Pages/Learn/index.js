@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 // Packages
 import ReactMarkdown from "react-markdown";
+import { useRecoilState } from "recoil";
 
 // Assets
 import Logo from "../../Assets/Images/logo.svg";
@@ -19,10 +20,11 @@ import FileExplorer from "../../Components/FileExplorer";
 
 // Utils
 import { H2, H3, H4, P, Code } from "../../Utils/MarkDownFunctions";
+import { currentStepState } from "../../Utils/RecoilState";
 
 function Learn() {
   const [markdown, setMarkdown] = useState("");
-  const [currentStep, setCurrentContentStep] = useState(0);
+  const [currentStep, setCurrentContentStep] = useRecoilState(currentStepState);
 
   useEffect(() => {
     const steps = [
@@ -67,7 +69,6 @@ function Learn() {
           <img src={Logo} alt="SorobanLearn" />
         </div>
       </div>
-      {/* test */}
       {/* CORE */}
       <div className="h-full flex gap-4">
         <div className="w-1/3 flex flex-col gap-4">

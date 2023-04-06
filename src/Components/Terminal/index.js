@@ -1,6 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
+import { StepValidation } from "../../Utils/StepValidation";
+import {
+  currentStepState,
+  currentErrorState,
+  hasErrorState,
+} from "../../Utils/RecoilState";
 
 function Terminal() {
+  const [consoleInputs, setConsoleInputs] = useState([]);
+  const [consoleInput, setConsoleInput] = useState("");
+  const [currentStep, setCurrentContentStep] = useRecoilState(currentStepState);
+  const [hasError, setHasError] = useRecoilState(hasErrorState);
+  const [currentError, setCurrentError] = useRecoilState(currentErrorState);
+
+  const handleConsoleSubmit = (e) => {
+    e.preventDefault();
+    setConsoleInputs([...consoleInputs, consoleInput]);
+    StepValidation(
+      currentStep,
+      setCurrentContentStep,
+      consoleInput,
+      setHasError,
+      setCurrentError
+    );
+    setConsoleInput("");
+  };
   return (
     <div className="h-[400px] flex flex-col">
       <div>
@@ -13,12 +44,22 @@ function Terminal() {
           <span className="text-lg leading-relaxed text-purple-500">
             soroban-learn/projects
           </span>
+          <form onSubmit={handleConsoleSubmit}>
+            <div className="flex">
+              <span>%</span>
+              <input
+                type="text"
+                className="bg-transparent ml-2 border-transparent focus:border-transparent focus:ring-0 !outline-none w-full"
+                onChange={(e) => setConsoleInput(e.target.value)}
+                value={consoleInput}
+              />
+            </div>
+          </form>
+
           <div>
-            <span>%</span>
-            <input
-              type="text"
-              className="bg-transparent ml-2 border-transparent focus:border-transparent focus:ring-0 !outline-none"
-            />
+            {consoleInputs?.map((input, index) => (
+              <div key={index}>{input}</div>
+            ))}
           </div>
         </div>
       </div>
