@@ -13,13 +13,17 @@ import ConfigureReleaseFile from "../../LearningMaterial/HelloWorld/Configuratio
 import ReleaseWithLogs from "../../LearningMaterial/HelloWorld/Configuration/ReleaseWithLogs.md";
 import WrappingItUp from "../../LearningMaterial/HelloWorld/Configuration/WrappingItUp.md";
 
+import WriteAContract from "../../LearningMaterial/HelloWorld/ContractDevelopment/WriteAContract.md";
+import IncludeTheSDK from "../../LearningMaterial/HelloWorld/ContractDevelopment/IncludeTheSDK.md";
+import CreateFunction from "../../LearningMaterial/HelloWorld/ContractDevelopment/CreateFunction.md";
+
 // Components
 import IDE from "../../Components/IDE";
 import Terminal from "../../Components/Terminal";
 import FileExplorer from "../../Components/FileExplorer";
 
 // Utils
-import { H2, H3, H4, P, Code } from "../../Utils/MarkDownFunctions";
+import { H2, H3, H4, P, Code, A } from "../../Utils/MarkDownFunctions";
 import { currentStepState } from "../../Utils/RecoilState";
 
 function Learn() {
@@ -34,6 +38,9 @@ function Learn() {
       ConfigureReleaseFile,
       ReleaseWithLogs,
       WrappingItUp,
+      WriteAContract,
+      IncludeTheSDK,
+      CreateFunction,
     ];
 
     // Fetch Markdown
@@ -78,7 +85,7 @@ function Learn() {
             <h2 className="text-5xl font-semibold mb-6">Hello World</h2>
             <ReactMarkdown
               children={markdown}
-              components={{ p: P, h2: H2, code: Code, h3: H3, h4: H4 }}
+              components={{ p: P, h2: H2, code: Code, h3: H3, h4: H4, a: A }}
             />
             <button
               className="bg-indigo-600 py-2 px-4 rounded-md mt-5 float-right"

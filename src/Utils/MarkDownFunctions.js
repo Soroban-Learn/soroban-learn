@@ -20,6 +20,14 @@ export function P(props) {
   return <p className="text-base leading-snug my-2">{props.children}</p>;
 }
 
+export function A(props) {
+  return (
+    <a href={props.href} className="underline" target="_blank" rel="noreferrer">
+      {props.children}
+    </a>
+  );
+}
+
 export function Code(props) {
   const [copied, setCopied] = useState(false);
 
@@ -32,22 +40,30 @@ export function Code(props) {
     }, 2000);
   };
 
-  return (
-    <div className="relative pb-2">
-      <div className="bg-[#282828] rounded-md my-6 p-4 flex items-center justify-between">
-        <code className="break-normal whitespace-pre-wrap">
-          {props.children}
-        </code>
-        <i
-          className="fa-light fa-copy cursor-pointer"
-          onClick={() => copyText()}
-        />
+  if (props.inline) {
+    return (
+      <code className="bg-[#282828] rounded-md px-2 py-1 text-sm">
+        {props.children}
+      </code>
+    );
+  } else {
+    return (
+      <div className="relative pb-2">
+        <div className="bg-[#282828] rounded-md my-6 p-4 flex items-center justify-between">
+          <code className="break-normal whitespace-pre-wrap">
+            {props.children}
+          </code>
+          <i
+            className="fa-light fa-copy cursor-pointer"
+            onClick={() => copyText()}
+          />
+        </div>
+        {copied && (
+          <span className="text-green-500 text-sm ml-2 absolute right-0 bottom-0">
+            Copied to clipboard
+          </span>
+        )}
       </div>
-      {copied && (
-        <span className="text-green-500 text-sm ml-2 absolute right-0 bottom-0">
-          Copied to clipboard
-        </span>
-      )}
-    </div>
-  );
+    );
+  }
 }

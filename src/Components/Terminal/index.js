@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
+import { useRecoilState } from "recoil";
 import { StepValidation } from "../../Utils/StepValidation";
 import {
   currentStepState,
@@ -17,8 +11,8 @@ function Terminal() {
   const [consoleInputs, setConsoleInputs] = useState([]);
   const [consoleInput, setConsoleInput] = useState("");
   const [currentStep, setCurrentContentStep] = useRecoilState(currentStepState);
-  const [hasError, setHasError] = useRecoilState(hasErrorState);
-  const [currentError, setCurrentError] = useRecoilState(currentErrorState);
+  const [, setHasError] = useRecoilState(hasErrorState);
+  const [, setCurrentError] = useRecoilState(currentErrorState);
 
   const handleConsoleSubmit = (e) => {
     e.preventDefault();

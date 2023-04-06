@@ -1,0 +1,1 @@
+The atomic swap example swaps two tokens between two authorized parties atomically while following the limits they set.
