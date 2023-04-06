@@ -48,36 +48,10 @@ function Learn() {
       type: "folder",
       children: [
         {
-          title: "Sub Folder",
-          type: "folder",
-          children: [
-            {
-              title: "Sub Folder 2",
-              type: "folder",
-              children: [
-                {
-                  title: "something",
-                },
-              ],
-            },
-            {
-              title: "something222",
-            },
-          ],
-        },
-        {
-          title: "something",
-          type: "file",
-        },
-        {
-          title: "something",
+          title: "src.rs",
           type: "file",
         },
       ],
-    },
-    {
-      title: "another folder",
-      type: "file",
     },
   ];
 
