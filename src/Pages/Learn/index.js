@@ -67,6 +67,7 @@ function Learn() {
           <img src={Logo} alt="SorobanLearn" />
         </div>
       </div>
+      {/* test */}
       {/* CORE */}
       <div className="h-full flex gap-4">
         <div className="w-1/3 flex flex-col gap-4">
