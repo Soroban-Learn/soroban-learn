@@ -1,0 +1,11 @@
+.error-toast {
+    background-color: rgba(100,0,0, 0.6);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: medium;
+    text-align: center;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}

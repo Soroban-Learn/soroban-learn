@@ -8146,6 +8146,11 @@ react-scripts@5.0.1:
   optionalDependencies:
     fsevents "^2.3.2"
 
+react-simple-toasts@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/react-simple-toasts/-/react-simple-toasts-4.0.1.tgz#66d378d7c05f684a09d78cf777202345c6727abc"
+  integrity sha512-j2RQmc+n0H8EjcFEfokVjpr/eHxRpL5FCCJHdqLQSunGWJvpv193rzStX4RO9yw0yQRRIGDGkaPGoOQq8Qkjjg==
+
 react@^18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"

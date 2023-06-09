@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
+import toast from "react-simple-toasts";
 import {
   currentLessonState,
   ideCodeState,
@@ -18,6 +19,17 @@ export function useStepValidation(
   const [lineNumbers, setLineNumbers] = useRecoilState(LineNumbersState);
 
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (error) {
+      toast(error+"! Please try again.", {
+        position: 'top-right',
+        duration: 3000,
+        className: 'error-toast',
+      });
+      setError("");
+    }
+  }, [error]);
 
   if (
     lessonContent &&

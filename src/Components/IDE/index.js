@@ -18,6 +18,7 @@ import {
 
 let lastInsert = null;
 let lastValue = "";
+let lastInsertText = "";
 
 function IDE(isDisabled) {
   const [theCode, setTheCode] = useState("");
@@ -40,6 +41,9 @@ function IDE(isDisabled) {
     }
 
     const newInsert = viewUpdate.changes.inserted;
+    const unifiedInsertText = newInsert
+    .map((textLeaf) => textLeaf.text.join(""))
+    .join("");
 
     //changes.inserted of structure:
     // changes.insert: array of textleaf
@@ -48,46 +52,52 @@ function IDE(isDisabled) {
     //if the changes.inserted is the same as the last insert, then it is a duplicate
     //insert and we should ignore it
 
-    const isDuplicateInsert = (thisInsert) => {
-      let isDup = true;
+    // const isDuplicateInsert = (thisInsert) => {
+    //   let isDup = true;
 
-      if (!lastInsert) {
-        return false;
-      }
+    //   if (!lastInsert) {
+    //     return false;
+    //   }
 
-      thisInsert.forEach((textLeaf, index) => {
-        const lastInsertLeaf = lastInsert[index];
+ 
+      
 
-        if (!textLeaf || !lastInsertLeaf) {
-          isDup = false;
-          return;
-        }
+    //   thisInsert.forEach((textLeaf, index) => {
+    //     const lastInsertLeaf = lastInsert[index];
+
+    //     if (!textLeaf || !lastInsertLeaf) {
+    //       isDup = false;
+    //       return;
+    //     }
         
-        if (!textLeaf.text || !lastInsertLeaf.text) {
-          isDup = false;
-          return;
-        }
+    //     if (!textLeaf.text || !lastInsertLeaf.text) {
+    //       isDup = false;
+    //       return;
+    //     }
 
-        if (textLeaf.text.join("") !== lastInsertLeaf.text.join("")) {
-          isDup = false;
-        }
+    //     if (textLeaf.text.join("") !== lastInsertLeaf.text.join("")) {
+    //       isDup = false;
+    //       return;
+    //     }
 
-        if (textLeaf.length <= 2) {
-          isDup = false;
-          return;
-        }
-      });
+    //     if (textLeaf.length <= 2) {
+    //       isDup = false;
+    //       return;
+    //     }
+    //   });
 
-      return isDup;
-    };
+    //   return isDup;
+    // };
 
-    const isDup = isDuplicateInsert(newInsert);
+    const isDup = unifiedInsertText === lastInsertText && unifiedInsertText.length > 1;
 
     if (isDup) {
       console.log("duplicate insert");
       setTheCode(lastValue + "");
+      lastInsertText = "";
     } else {
       setTheCode(value);
+      lastInsertText = unifiedInsertText;
     }
 
     lastInsert = viewUpdate.changes.inserted;
