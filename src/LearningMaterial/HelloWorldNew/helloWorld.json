@@ -56,7 +56,7 @@
       "instructions": [
         {
           "type": "code",
-          "input": "[lib]crate-type=[\"cdylib\"][dependencies]soroban-sdk=\"0.8.4\"[dev_dependencies]soroban-sdk={version=\"0.8.4\",features=[\"testutils\"]}[features]testutils=[\"soroban-sdk/testutils\"][profile.release]opt-level=\"z\"overflow-checks=truedebug=0strip=\"symbols\"debug-assertions=falsepanic=\"abort\"codegen-units=1lto=true[profile.release-with-logs]inherits=\"release\"debug-assertions=true",
+          "input": "[profile.release-with-logs]inherits=\"release\"debug-assertions=true",
           "output": "Nice"
         }
       ]

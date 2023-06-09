@@ -22,10 +22,10 @@ export function useStepValidation(
 
   useEffect(() => {
     if (error) {
-      toast(error+"! Please try again.", {
-        position: 'top-right',
+      toast(error + "! Please try again.", {
+        position: "top-right",
         duration: 3000,
-        className: 'error-toast',
+        className: "error-toast",
       });
       setError("");
     }
@@ -38,6 +38,18 @@ export function useStepValidation(
     lessonContent.steps[currentStep].instructions
   ) {
     const instructions = lessonContent.steps[currentStep].instructions;
+    let accumulatedInput = "";
+
+    for (let i = 0; i <= currentStep; i++) {
+      if (lessonContent.steps[i] && lessonContent.steps[i].instructions) {
+        // eslint-disable-next-line no-loop-func
+        lessonContent.steps[i].instructions.forEach((instruction) => {
+          if (instruction.type === "code") {
+            accumulatedInput += instruction.input;
+          }
+        });
+      }
+    }
 
     const validateStep = () => {
       instructions.forEach((instruction) => {
@@ -52,7 +64,7 @@ export function useStepValidation(
           let ideCodeSingleLine = ideCode.replace(/\s+/g, "");
           const allLines = ideCode.split("\n");
 
-          //disabled lines are lines that  contain  text
+          //disabled lines are lines that contain text
           const disabledLineIndexes = [];
           allLines.forEach((line, index) => {
             if (line.trim() !== "") {
@@ -61,11 +73,11 @@ export function useStepValidation(
           });
           setLineNumbers(disabledLineIndexes);
 
-         
-        
-          if (ideCodeSingleLine === instruction.input) {
+          console.log("[[[ideCodeSingleLine]]]", ideCodeSingleLine);
+          console.log("[[[accumulatedInput]]]", accumulatedInput);
+
+          if (ideCodeSingleLine === accumulatedInput) {
             setCurrentContentStep(currentStep + 1);
-            // update disabled lines based on which lines are currently active
           } else {
             setError("Invalid Code");
           }

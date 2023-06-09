@@ -80,42 +80,64 @@ function Learn() {
         <div className="w-2/5 flex flex-col gap-4">
           {/* Exercise */}
           <div className="px-12 h-full overflow-scroll">
-            <h3 className="text-lg leading-loose">Current Exercise</h3>
-            <h2 className="text-5xl font-semibold mb-6">
-              {lessonContent.title}
-            </h2>
+            {lessonContent.steps &&
+              currentStep < lessonContent.steps.length && (
+                <>
+                  <h3 className="text-lg leading-loose">Current Exercise</h3>
+                  <h2 className="text-5xl font-semibold mb-6">
+                    {lessonContent.title}
+                  </h2>
+                </>
+              )}
+            {/* Sidebar */}
             <div>
               {lessonContent.steps &&
-                currentStep < lessonContent.steps.length && (
-                  <>
-                    <h3 className="text-lg leading-loose">
-                      {lessonContent.steps[currentStep].stepTitle}
-                    </h3>
-                    <ReactMarkdown
-                      children={lessonContent.steps[currentStep].sectionContent}
-                      components={{
-                        p: P,
-                        h2: H2,
-                        code: Code,
-                        h3: H3,
-                        h4: H4,
-                        a: A,
-                      }}
-                    />
-                  </>
-                )}
+              currentStep < lessonContent.steps.length ? (
+                <>
+                  <h3 className="text-lg leading-loose">
+                    {lessonContent.steps[currentStep].stepTitle}
+                  </h3>
+                  <ReactMarkdown
+                    children={lessonContent.steps[currentStep].sectionContent}
+                    components={{
+                      p: P,
+                      h2: H2,
+                      code: Code,
+                      h3: H3,
+                      h4: H4,
+                      a: A,
+                    }}
+                  />
+                </>
+              ) : (
+                <div className="text-center">
+                  <h3 className="text-xl leading-loose mt-10 font-bold">
+                    You have completed this lesson!
+                  </h3>
+                  <p>
+                    Congrats! You're on a roll. Next is{" "}
+                    <strong>Some cool lesson</strong>. In this lesson, you'll
+                    learn how to do some neat things.
+                  </p>
+                  <button className="bg-indigo-600 py-2 px-4 rounded-md mt-5">
+                    Continue
+                  </button>
+                </div>
+              )}
             </div>
-            {stepType !== "terminal" && (
-              <button
-                className="bg-indigo-600 py-2 px-4 rounded-md mt-5 float-right"
-                onClick={() => handleStepProgression()}
-              >
-                Next Step
-              </button>
-            )}
+            {stepType !== "terminal" &&
+              lessonContent.steps &&
+              currentStep < lessonContent.steps.length && (
+                <button
+                  className="bg-indigo-600 py-2 px-4 rounded-md mt-5 float-right"
+                  onClick={() => handleStepProgression()}
+                >
+                  Next Step
+                </button>
+              )}
           </div>
 
-          <FileExplorer fileStructure={fileStructure} />
+          {/* <FileExplorer fileStructure={fileStructure} /> */}
         </div>
 
         <div className="w-full flex flex-col gap-4">
