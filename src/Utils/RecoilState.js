@@ -1,18 +1,46 @@
 import { atom } from "recoil";
 
 const currentStepState = atom({
-  key: "currentStepState",
+  key: "currentStepStateKey",
   default: 0,
 });
 
 const currentErrorState = atom({
-  key: "currentErrorState",
+  key: "currentErrorStateKey",
   default: "",
 });
 
 const hasErrorState = atom({
-  key: "hasErrorState",
+  key: "hasErrorStateKey",
   default: false,
 });
 
-export { currentStepState, currentErrorState, hasErrorState };
+const currentLessonState = atom({
+  key: "currentLessonStateKey",
+  default: {},
+});
+
+const ideCodeState = atom({
+  key: "ideCodeStateKey",
+  default: "",
+});
+
+const ideEditRulesState = atom({
+  key: "ideEditRulesStateKey",
+  default: [],
+});
+
+const LineNumbersState = atom({
+  key: "LineNumbersStateKey",
+  default: [],
+});
+
+export {
+  currentStepState,
+  currentErrorState,
+  hasErrorState,
+  currentLessonState,
+  ideCodeState,
+  ideEditRulesState,
+  LineNumbersState,
+};

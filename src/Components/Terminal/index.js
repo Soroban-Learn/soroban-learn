@@ -1,31 +1,55 @@
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
-import { StepValidation } from "../../Utils/StepValidation";
 import {
   currentStepState,
   currentErrorState,
+  currentLessonState,
   hasErrorState,
 } from "../../Utils/RecoilState";
 
 function Terminal() {
-  const [consoleInputs, setConsoleInputs] = useState([]);
+  const [pastConsoleInputs, setPastConsoleInputs] = useState([]);
   const [consoleInput, setConsoleInput] = useState("");
   const [currentStep, setCurrentContentStep] = useRecoilState(currentStepState);
   const [, setHasError] = useRecoilState(hasErrorState);
-  const [, setCurrentError] = useRecoilState(currentErrorState);
+  const [currentError, setCurrentError] = useRecoilState(currentErrorState);
+  const [lessonContent, setLessonContent] = useRecoilState(currentLessonState);
 
   const handleConsoleSubmit = (e) => {
     e.preventDefault();
-    setConsoleInputs([...consoleInputs, consoleInput]);
-    StepValidation(
-      currentStep,
-      setCurrentContentStep,
-      consoleInput,
-      setHasError,
-      setCurrentError
-    );
+    let feedback = "";
+    if (
+      lessonContent &&
+      lessonContent.steps &&
+      lessonContent.steps.length > currentStep &&
+      lessonContent.steps[currentStep].instructions
+    ) {
+      const instructions = lessonContent.steps[currentStep].instructions;
+
+      instructions.forEach((instruction) => {
+        if (instruction.type === "terminal") {
+          if (instruction.input === consoleInput) {
+            setHasError(false);
+            setCurrentError("Success");
+            feedback = "Success";
+            setCurrentContentStep(currentStep + 1);
+          } else {
+            setHasError(true);
+            setCurrentError("Invalid Command");
+            feedback = "Invalid Command";
+          }
+        }
+      });
+    }
+
+    setPastConsoleInputs([
+      ...pastConsoleInputs,
+      { successMessage: feedback, input: consoleInput },
+    ]);
+
     setConsoleInput("");
   };
+
   return (
     <div className="h-[400px] flex flex-col">
       <div>
@@ -35,24 +59,27 @@ function Terminal() {
       </div>
       <div className="bg-[#282828] h-full p-6">
         <div>
-          <span className="text-lg leading-relaxed text-purple-500">
-            soroban-learn/projects
-          </span>
-          <form onSubmit={handleConsoleSubmit}>
-            <div className="flex">
-              <span>%</span>
-              <input
-                type="text"
-                className="bg-transparent ml-2 border-transparent focus:border-transparent focus:ring-0 !outline-none w-full"
-                onChange={(e) => setConsoleInput(e.target.value)}
-                value={consoleInput}
-              />
-            </div>
-          </form>
-
-          <div>
-            {consoleInputs?.map((input, index) => (
-              <div key={index}>{input}</div>
+          <div className="flex flex-col-reverse">
+            <form onSubmit={handleConsoleSubmit}>
+              <div className="flex">
+                <span>%</span>
+                <input
+                  type="text"
+                  className="bg-transparent ml-2 border-transparent focus:border-transparent focus:ring-0 !outline-none w-full"
+                  onChange={(e) => setConsoleInput(e.target.value)}
+                  value={consoleInput}
+                />
+              </div>
+            </form>
+          </div>
+          <div className="flex flex-col-reverse">
+            {pastConsoleInputs?.map((input, index) => (
+              <div key={index} className="flex flex-col">
+                <span className="text-indigo-600">
+                  {">"} {input.input}
+                </span>
+                <span className="text-xs">{input.successMessage}</span>
+              </div>
             ))}
           </div>
         </div>

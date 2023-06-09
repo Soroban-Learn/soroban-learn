@@ -15,7 +15,7 @@ function App() {
         <Routes>
           <Route index path="/" element={<Home />} />
           <Route exact path="/intro" element={<Intro />} />
-          <Route exact path="/learn" element={<Learn />} />
+          <Route exact path="/exercise/:slug" element={<Learn />} />
         </Routes>
       </RecoilRoot>
     </div>

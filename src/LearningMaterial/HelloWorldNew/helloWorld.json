@@ -1,0 +1,41 @@
+{
+  "title": "Hello World",
+  "steps": [
+    {
+      "stepTitle": "",
+      "sectionContent": "This is exercise will help you in creating your first \"Hello World!\" contract.\n #### Create New Project\n To the right and bottom of this application you should see a tab for the console. To create your project type the following and press “enter”\n ```\ncargo new --lib hello-world\n```",
+      "stepType": "terminal",
+      "instructions": [
+        {
+          "type": "terminal",
+          "input": "cargo new --lib hello-world",
+          "output": "Something Created"
+        }
+      ]
+    },
+    {
+      "stepTitle": "Configure the release",
+      "sectionContent": "#### Configure the release Profile\n Configuring the release profile to optimize the contract build is critical. Soroban contracts have a maximum size of 256KB. Rust programs, even small ones, without these configurations almost always exceed this size.\n Add the following to your Cargo.toml and use the release profile when building.\n```\n[profile.release]\nopt-level = \"z\"\noverflow-checks = true\ndebug = 0\nstrip = \"symbols\"\ndebug-assertions = false\npanic = \"abort\"\ncodegen-units = 1\nlto = true\n```",
+      "stepType": "code",
+      "instructions": [
+        {
+          "type": "code",
+          "input": "[profile.release]opt-level=\"z\"overflow-checks=truedebug=0strip=\"symbols\"debug-assertions=falsepanic=\"abort\"codegen-units=1lto=true",
+          "output": "Nice"
+        }
+      ]
+    },
+    {
+      "stepTitle": "Configure the release",
+      "sectionContent": "#### Configure the release Profile\n Configuring the release profile to optimize the contract build is critical. Soroban contracts have a maximum size of 256KB. Rust programs, even small ones, without these configurations almost always exceed this size.\n Add the following to your Cargo.toml and use the release profile when building.\n```\n[profile.release]\nopt-level = \"z\"\noverflow-checks = true\ndebug = 0\nstrip = \"symbols\"\ndebug-assertions = false\npanic = \"abort\"\ncodegen-units = 1\nlto = true\n```",
+      "stepType": "code",
+      "instructions": [
+        {
+          "type": "code",
+          "input": "[profile.release]opt-level=\"z\"overflow-checks=truedebug=0strip=\"symbols\"debug-assertions=falsepanic=\"abort\"codegen-units=1lto=true",
+          "output": "Nice"
+        }
+      ]
+    }
+  ]
+}
