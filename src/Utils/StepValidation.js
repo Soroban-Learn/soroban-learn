@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { currentLessonState, ideCodeState } from "../Utils/RecoilState";
+import {
+  currentLessonState,
+  ideCodeState,
+  LineNumbersState,
+} from "../Utils/RecoilState";
 
 export function useStepValidation(
   currentStep,
@@ -11,6 +15,8 @@ export function useStepValidation(
 ) {
   const [lessonContent] = useRecoilState(currentLessonState);
   const [ideCode, setIdeCode] = useRecoilState(ideCodeState);
+  const [lineNumbers, setLineNumbers] = useRecoilState(LineNumbersState);
+
   const [error, setError] = useState("");
 
   if (
@@ -32,6 +38,19 @@ export function useStepValidation(
           }
         } else if (instruction.type === "code") {
           let ideCodeSingleLine = ideCode.replace(/\s+/g, "");
+          const allLines = ideCode.split("\n");
+
+          //disabled lines are lines that  contain  text
+          const disabledLineIndexes = [];
+          allLines.forEach((line, index) => {
+            if (line.trim() !== "") {
+              disabledLineIndexes.push(index);
+            }
+          });
+          setLineNumbers(disabledLineIndexes);
+
+         
+        
           if (ideCodeSingleLine === instruction.input) {
             setCurrentContentStep(currentStep + 1);
             // update disabled lines based on which lines are currently active

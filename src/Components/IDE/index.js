@@ -44,19 +44,51 @@ function IDE(isDisabled) {
       }
     }
 
-    return ranges;
+    return ranges;  
   };
 
   const getReadOnlyRanges = (targetState) => {
     const lines = detectConsecutiveNumbers(lineNumbers);
+    console.log("[[[lines]]]", lines);
     const ranges = [];
 
-    lines.forEach((line) => {
+    // for each of the lines find the start and end index of that line
+    // and add it to the ranges array
+    // check that code is longer than the largest line number
+    
+    // lines.forEach((line) => {
+    //   ranges.push({
+    //     from: targetState.doc.line(line.start).from,
+    //     to: targetState.doc.line(line.end).to,
+    //   });
+    // });
+    
+
+    lineNumbers.forEach((line) => {
       ranges.push({
-        from: targetState.doc.line(line.start).from,
-        to: targetState.doc.line(line.end).to,
+        from: targetState.doc.line(line+1).from,
+        to: targetState.doc.line(line+1).to,
       });
     });
+
+    console.log(' get read only ranges');
+    console.log(targetState);
+    
+    // if (targetState.doc.length > 50) {
+    //   ranges.push({
+    //     from: targetState.doc.line(3).from,
+    //     to: targetState.doc.line(4).to,
+    //   })
+
+    //   ranges.push({
+    //     from: targetState.doc.line(5).from,
+    //     to: targetState.doc.line(7).to,
+    //   })
+    // }
+
+    console.log(code);
+
+    console.log("[[[ranges]]]", ranges);
 
     return ranges;
   };
