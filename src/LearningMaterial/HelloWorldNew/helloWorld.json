@@ -32,14 +32,14 @@
       "instructions": [
         {
           "type": "code",
-          "input": "[lib]crate-type=[\"cdylib\"][dependencies]soroban-sdk=\"0.8.4\"[dev_dependencies]soroban-sdk={version=\"0.8.4\",features=[\"testutils\"]}[features]testutils=[\"soroban-sdk/testutils\"]",
+          "input": "[dependencies]soroban-sdk=\"0.8.4\"[dev_dependencies]soroban-sdk={version=\"0.8.4\",features=[\"testutils\"]}[features]testutils=[\"soroban-sdk/testutils\"]",
           "output": "Nice"
         }
       ]
     },
     {
       "stepTitle": "Configure the Release Profile",
-      "sectionContent": "#### Configure the release profile\n Configuring the `release` profile to optimize the contract build is critical. Soroban contracts have a maximum size of 256KB. Rust programs, even small ones, without these configurations almost always exceed this size.\n Add the following to your `Cargo.toml` and use the release profile when building.\n [profile.release]\n opt-level = \"z\"\n overflow-checks = true\n debug = 0\n strip = \"symbols\"\n debug-assertions = false\n panic = \"abort\"\n codegen-units = 1\n lto = true",
+      "sectionContent": "#### Configure the release profile\n Configuring the `release` profile to optimize the contract build is critical. Soroban contracts have a maximum size of 256KB. Rust programs, even small ones, without these configurations almost always exceed this size.\n\n Add the following to your `Cargo.toml` and use the release profile when building.\n\n ```\n [profile.release]\n opt-level = \"z\"\n overflow-checks = true\n debug = 0\n strip = \"symbols\"\n debug-assertions = false\n panic = \"abort\"\n codegen-units = 1\n lto = true\n ```",
       "stepType": "code",
       "instructions": [
         {
@@ -51,12 +51,12 @@
     },
     {
       "stepTitle": "Configure the release-with-logs Profile",
-      "sectionContent": "#### Configure the release-with-logs Profile\n Configuring a `release-with-logs` profile can be useful for if you need to build a `.wasm` that has logs enabled for printing debug logs when using the soroban-cli. Note that this is not necessary to access debug logs in tests or to use a step-through-debugger.\n Add the following to your `Cargo.toml` and use the `release-with-logs` profile when you need logs.\n [profile.release-with-logs]\n inherits = \"release\"\n debug-assertions = true",
+      "sectionContent": "#### Configure the release-with-logs Profile\n Configuring a `release-with-logs` profile can be useful for if you need to build a `.wasm` that has logs enabled for printing debug logs when using the soroban-cli. Note that this is not necessary to access debug logs in tests or to use a step-through-debugger.\n\n Add the following to your `Cargo.toml` and use the `release-with-logs` profile when you need logs.\n\n ```\n [profile.release-with-logs]\n inherits = \"release\"\n debug-assertions = true\n ```",
       "stepType": "code",
       "instructions": [
         {
           "type": "code",
-          "input": "[profile.release-with-logs]inherits=\"release\"debug-assertions=true",
+          "input": "[lib]crate-type=[\"cdylib\"][dependencies]soroban-sdk=\"0.8.4\"[dev_dependencies]soroban-sdk={version=\"0.8.4\",features=[\"testutils\"]}[features]testutils=[\"soroban-sdk/testutils\"][profile.release]opt-level=\"z\"overflow-checks=truedebug=0strip=\"symbols\"debug-assertions=falsepanic=\"abort\"codegen-units=1lto=true[profile.release-with-logs]inherits=\"release\"debug-assertions=true",
           "output": "Nice"
         }
       ]
