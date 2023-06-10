@@ -40,7 +40,8 @@ export function useStepValidation(
     const instructions = lessonContent.steps[currentStep].instructions;
     let accumulatedInput = "";
 
-    for (let i = 0; i <= currentStep; i++) {
+    const i = currentStep;
+    // for (let i = 0; i <= currentStep; i++) {
       if (lessonContent.steps[i] && lessonContent.steps[i].instructions) {
         // eslint-disable-next-line no-loop-func
         lessonContent.steps[i].instructions.forEach((instruction) => {
@@ -49,7 +50,7 @@ export function useStepValidation(
           }
         });
       }
-    }
+    // }
 
     const validateStep = () => {
       instructions.forEach((instruction) => {
