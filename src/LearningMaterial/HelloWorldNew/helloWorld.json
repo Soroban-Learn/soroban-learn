@@ -15,7 +15,7 @@
     },
     {
       "stepTitle": "Configure the Library Type",
-      "sectionContent": "#### Configure the Library Type\n We have opened the `Cargo.toml` file. This file is used to define characteristics about your project.\n We need to define our library type. To do this, add the following code below the existing code.\n ```\n[lib]\n crate-type = [\"cdylib\"]\n```",
+      "sectionContent": "We have opened the `Cargo.toml` file. This file is used to define characteristics about your project.\n We need to define our library type. To do this, add the following code below the existing code.\n ```\n[lib]\n crate-type = [\"cdylib\"]\n```",
       "stepType": "code",
       "instructions": [
         {
@@ -27,7 +27,7 @@
     },
     {
       "stepTitle": "Import the SDK and Features",
-      "sectionContent": "#### Import the SDK and Features\n Add the following sections to the Cargo.toml that will import the soroban-sdk, and configure a set of features explained below.\n ```\n [dependencies]\n soroban-sdk = \"0.8.4\"\n\n [dev_dependencies]\n soroban-sdk = { version = \"0.8.4\", features = [\"testutils\"] }\n\n [features]\n testutils = [\"soroban-sdk/testutils\"]\n ```\n The `features` list includes a `testutils` feature, which will cause additional test utilities to be generated for calling the contract in tests.",
+      "sectionContent": "Add the following sections to the Cargo.toml that will import the soroban-sdk, and configure a set of features explained below.\n ```\n [dependencies]\n soroban-sdk = \"0.8.4\"\n\n [dev_dependencies]\n soroban-sdk = { version = \"0.8.4\", features = [\"testutils\"] }\n\n [features]\n testutils = [\"soroban-sdk/testutils\"]\n ```\n The `features` list includes a `testutils` feature, which will cause additional test utilities to be generated for calling the contract in tests.",
       "stepType": "code",
       "instructions": [
         {
@@ -39,7 +39,7 @@
     },
     {
       "stepTitle": "Configure the Release Profile",
-      "sectionContent": "#### Configure the release profile\n Configuring the `release` profile to optimize the contract build is critical. Soroban contracts have a maximum size of 256KB. Rust programs, even small ones, without these configurations almost always exceed this size.\n\n Add the following to your `Cargo.toml` and use the release profile when building.\n\n ```\n [profile.release]\n opt-level = \"z\"\n overflow-checks = true\n debug = 0\n strip = \"symbols\"\n debug-assertions = false\n panic = \"abort\"\n codegen-units = 1\n lto = true\n ```",
+      "sectionContent": "Configuring the `release` profile to optimize the contract build is critical. Soroban contracts have a maximum size of 256KB. Rust programs, even small ones, without these configurations almost always exceed this size.\n\n Add the following to your `Cargo.toml` and use the release profile when building.\n\n ```\n [profile.release]\n opt-level = \"z\"\n overflow-checks = true\n debug = 0\n strip = \"symbols\"\n debug-assertions = false\n panic = \"abort\"\n codegen-units = 1\n lto = true\n ```",
       "stepType": "code",
       "instructions": [
         {
@@ -51,7 +51,7 @@
     },
     {
       "stepTitle": "Configure the release-with-logs Profile",
-      "sectionContent": "#### Configure the release-with-logs Profile\n Configuring a `release-with-logs` profile can be useful for if you need to build a `.wasm` that has logs enabled for printing debug logs when using the soroban-cli. Note that this is not necessary to access debug logs in tests or to use a step-through-debugger.\n\n Add the following to your `Cargo.toml` and use the `release-with-logs` profile when you need logs.\n\n ```\n [profile.release-with-logs]\n inherits = \"release\"\n debug-assertions = true\n ```",
+      "sectionContent": "Configuring a `release-with-logs` profile can be useful for if you need to build a `.wasm` that has logs enabled for printing debug logs when using the soroban-cli. Note that this is not necessary to access debug logs in tests or to use a step-through-debugger.\n\n Add the following to your `Cargo.toml` and use the `release-with-logs` profile when you need logs.\n\n ```\n [profile.release-with-logs]\n inherits = \"release\"\n debug-assertions = true\n ```",
       "stepType": "code",
       "instructions": [
         {
