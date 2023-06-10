@@ -35,6 +35,11 @@ const LineNumbersState = atom({
   default: [],
 });
 
+const BlockedRangesState = atom({
+  key: "BlockedRangesStateKey",
+  default: [],
+});
+
 export {
   currentStepState,
   currentErrorState,
@@ -43,4 +48,5 @@ export {
   ideCodeState,
   ideEditRulesState,
   LineNumbersState,
+  BlockedRangesState
 };
