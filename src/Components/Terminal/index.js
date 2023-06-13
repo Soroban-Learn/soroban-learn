@@ -51,14 +51,14 @@ function Terminal() {
   };
 
   return (
-    <div className="h-[400px] flex flex-col">
+    <div className="flex flex-col h-full max-h-[300px] mt-auto">
       <div>
         <div className="bg-[#282828] w-fit px-11 py-3 rounded-tr-lg text-base font-bold">
           Console
         </div>
       </div>
       <div className="bg-[#282828] h-full p-6">
-        <div>
+        <div className="h-full">
           <div className="flex flex-col-reverse">
             <form onSubmit={handleConsoleSubmit}>
               <div className="flex">
@@ -72,7 +72,7 @@ function Terminal() {
               </div>
             </form>
           </div>
-          <div className="flex flex-col-reverse">
+          <div className="flex flex-col-reverse max-h-[90%] overflow-x-auto">
             {pastConsoleInputs?.map((input, index) => (
               <div key={index} className="flex flex-col">
                 <span className="text-indigo-600">

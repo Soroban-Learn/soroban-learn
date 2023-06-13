@@ -70,12 +70,12 @@ function IDE(isDisabled) {
   };
 
   return (
-    <div className="bg-[#232323] rounded-tl-lg rounded-bl-lg p-6 h-full">
+    <div className="bg-[#232323] rounded-tl-lg rounded-bl-lg p-6 h-full max-h-[60vh]">
       <CodeMirror
         value={ideCode}
-        className="rounded-tl-lg rounded-bl-lg"
+        className="rounded-tl-lg rounded-bl-lg h-full"
         height="100%"
-        maxHeight="50vh"
+        maxHeight="100%"
         theme="dark"
         extensions={[
           EditorView.lineWrapping,
