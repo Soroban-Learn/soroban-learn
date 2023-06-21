@@ -1,4 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+// Images
 import Logo from "../../Assets/Images/logo.svg";
 import Glows from "../../Assets/Images/glows.svg";
 import Arrows from "../../Assets/Images/arrows.svg";
@@ -7,6 +10,7 @@ import Steps from "../../Assets/Images/steps.svg";
 import Resources from "../../Assets/Images/resources.svg";
 import HomeCode from "../../Assets/Images/homecode.png";
 
+// Custom animation
 import "./Animations.scss";
 
 function Home() {
@@ -17,14 +21,16 @@ function Home() {
           <img src={Logo} className="SorobanLearn" alt="logo" />
           <div className="flex gap-[25px]">
             <a
-              href="/"
-              className="w-12 h-12 bg-white border-2 border-white text-black flex justify-center items-center hover:bg-transparent hover:text-white transition-all duration-500"
+              href="https://discord.gg/xYdDBnRVK5"
+              target="_blank"
+              className="w-12 h-12 bg-white border-2 border-white hover:border-indigo-700 text-black flex justify-center items-center hover:bg-indigo-700 hover:text-white transition-all duration-500"
+              rel="noreferrer"
             >
               <i className="fa-brands fa-discord" />
             </a>
             <a
               href="/"
-              className="border-2 border-white flex justify-center items-center px-6 hover:bg-white hover:text-black transition-all duration-500"
+              className="border-2 border-white flex justify-center items-center px-6 hover:bg-indigo-700 hover:text-white hover:border-indigo-700 transition-all duration-500"
             >
               Explore Now
             </a>
@@ -32,7 +38,7 @@ function Home() {
         </div>
       </header>
 
-      <section className="py-10 sm:py-20 overflow-x-hidden relative">
+      <section className="py-10 sm:py-20 overflow-hidden relative">
         <div className="container mx-auto">
           <h1 className="text-7xl sm:text-9xl text-white font-extralight mb-16 mt-16">
             New to <span className="font-medium">Soroban</span>?
@@ -53,9 +59,12 @@ function Home() {
                 It will walk you through creating your first “Hello World”
                 contract and finish up with a token swap contract.
               </p>
-              <a href="/" className="bg-indigo-700 px-10 py-3 inline-block">
+              <Link
+                to="/exercise/hello-world"
+                className="bg-indigo-700 px-10 py-3 inline-block"
+              >
                 Get Started
-              </a>
+              </Link>
             </div>
 
             <div>
