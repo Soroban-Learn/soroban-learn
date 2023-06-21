@@ -2,6 +2,9 @@ import React from "react";
 import Logo from "../../Assets/Images/logo.svg";
 import Glows from "../../Assets/Images/glows.svg";
 import Arrows from "../../Assets/Images/arrows.svg";
+import Rocket from "../../Assets/Images/rocket.svg";
+import Steps from "../../Assets/Images/steps.svg";
+import Resources from "../../Assets/Images/resources.svg";
 import HomeCode from "../../Assets/Images/homecode.png";
 
 import "./Animations.scss";
@@ -29,13 +32,13 @@ function Home() {
         </div>
       </header>
 
-      <section>
+      <section className="py-10 sm:py-20 overflow-x-hidden relative">
         <div className="container mx-auto">
-          <h1 className="text-9xl text-white font-extralight mb-16 mt-16">
+          <h1 className="text-7xl sm:text-9xl text-white font-extralight mb-16 mt-16">
             New to <span className="font-medium">Soroban</span>?
           </h1>
-          <div className="flex justify-between">
-            <div className="w-[475px] relative">
+          <div className="flex flex-col-reverse lg:flex-row justify-between">
+            <div className="w-fill lg:w-[475px] relative">
               <img
                 src={Arrows}
                 alt="Arrows"
@@ -56,12 +59,55 @@ function Home() {
             </div>
 
             <div>
-              <img src={HomeCode} alt="Home Code" />
+              <img
+                src={HomeCode}
+                alt="Home Code"
+                className="w-full lg:w-auto"
+              />
               <img
                 src={Glows}
                 alt="glows"
                 className="absolute top-0 right-0 opacity-60 -z-10 moving-image"
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="container mx-auto">
+          <div className="flex justify-between gap-[130px] flex-col lg:flex-row">
+            <div className="flex flex-col justify-center items-center text-center gap-5">
+              <img src={Rocket} alt="Rocket" className="max-w-[250px]" />
+              <h2 className="text-center text-white text-[24px] font-medium">
+                No Local Setup
+              </h2>
+              <p className="text-center text-slate-400 text-[18px] font-normal">
+                Soroban Learn requires no local setup. No need to install any
+                packages or even open your code editor
+              </p>
+            </div>
+
+            <div className="flex flex-col justify-center items-center text-center gap-5">
+              <img src={Steps} alt="Steps" className="max-w-[250px]" />
+              <h2 className="text-center text-white text-[24px] font-medium">
+                Step by step instructions
+              </h2>
+              <p className="text-center text-slate-400 text-[18px] font-normal">
+                Soroban Learn requires no local setup. No need to install any
+                packages or even open your code editor
+              </p>
+            </div>
+
+            <div className="flex flex-col justify-center items-center text-center gap-5">
+              <img src={Resources} alt="Resources" className="max-w-[250px]" />
+              <h2 className="text-center text-white text-[24px] font-medium">
+                Post Resources
+              </h2>
+              <p className="text-center text-slate-400 text-[18px] font-normal">
+                Soroban Learn requires no local setup. No need to install any
+                packages or even open your code editor
+              </p>
             </div>
           </div>
         </div>
