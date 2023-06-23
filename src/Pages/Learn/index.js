@@ -63,8 +63,8 @@ function Learn() {
       {/* Header */}
       <div className="h-[80px] grid grid-cols-3 items-stretch py-6 px-6">
         <div>
-          <i className="fa-solid fa-bars mr-4 cursor-pointer" />
-          <span className="mr-auto">Getting Started</span>
+          {/* <i className="fa-solid fa-bars mr-4 cursor-pointer" /> */}
+          <span className="mr-auto">Hello World!</span>
         </div>
         <div className="flex justify-center">
           <img src={Logo} alt="SorobanLearn" />
@@ -112,16 +112,21 @@ function Learn() {
               ) : (
                 <div className="text-center">
                   <h3 className="text-xl leading-loose mt-10 font-bold">
-                    You have completed this lesson!
+                    Thank you for testing SorobanLearn!
                   </h3>
                   <p>
-                    Congrats! You're on a roll. Next is{" "}
-                    <strong>Some cool lesson</strong>. In this lesson, you'll
-                    learn how to do some neat things.
+                    SorobanLearn is still in development. If you have any
+                    feedback or suggestions, please reach out to us on Discord.
                   </p>
-                  <button className="bg-indigo-600 py-2 px-4 rounded-md mt-5">
-                    Continue
-                  </button>
+
+                  <a
+                    href="https://discord.gg/xYdDBnRVK5"
+                    target="_blank"
+                    className="bg-indigo-600 py-2 px-4 mt-6 block w-fit mx-auto"
+                    rel="noreferrer"
+                  >
+                    Join our Discord
+                  </a>
                 </div>
               )}
             </div>

@@ -30,7 +30,7 @@ function Home() {
             </a>
             <a
               href="/"
-              className="border-2 border-white flex justify-center items-center px-6 hover:bg-indigo-700 hover:text-white hover:border-indigo-700 transition-all duration-500"
+              className="border-2 border-white sm:flex justify-center items-center px-6 hover:bg-indigo-700 hover:text-white hover:border-indigo-700 transition-all duration-500 hidden"
             >
               Explore Now
             </a>
