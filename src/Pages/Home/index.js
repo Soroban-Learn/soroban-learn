@@ -28,12 +28,12 @@ function Home() {
             >
               <i className="fa-brands fa-discord" />
             </a>
-            <a
-              href="/"
+            <Link
+              to="/exercise/hello-world"
               className="border-2 border-white sm:flex justify-center items-center px-6 hover:bg-indigo-700 hover:text-white hover:border-indigo-700 transition-all duration-500 hidden"
             >
               Explore Now
-            </a>
+            </Link>
           </div>
         </div>
       </header>
